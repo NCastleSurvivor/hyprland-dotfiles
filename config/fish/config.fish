@@ -3,6 +3,7 @@ if status is-interactive
 end
 
 set EDITOR nvim
+alias vim ="nvim"
 
 alias ll="ls -lh"
 fastfetch
