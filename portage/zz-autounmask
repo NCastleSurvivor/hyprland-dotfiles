@@ -26,6 +26,8 @@ www-client/brave-bin l10n_zh-CN l10n_en-US
 #qutebrowser
 #>=dev-python/pyqt6-6.8.1 webchannel
 
+gui-wm/niri screencast
+
 # fcitx
 app-i18n/fcitx-meta rime -chinese-addons
 app-i18n/rime-data extra
