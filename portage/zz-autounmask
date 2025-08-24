@@ -26,6 +26,8 @@ www-client/brave-bin l10n_zh-CN l10n_en-US
 #qutebrowser
 #>=dev-python/pyqt6-6.8.1 webchannel
 
+media-video/ffmpeg x265 x264 vaapi vdpau amf qsv nvenc 
+
 gui-wm/niri screencast
 
 # fcitx
