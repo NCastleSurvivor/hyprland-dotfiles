@@ -16,28 +16,34 @@ get_icon() {
 }
 
 notify_user() {
-	${notify_cmd} "Volume: $(get_volume)"
+	#${notify_cmd} "Volume: $(get_volume)"
+	notify-send "Volume: $(get_volume)" -u low
 }
 
 inc_volume() {
 #	if [[ "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F: '{print $2}')" < "1.0" ]]; then
 	if [[ $(get_volume) -lt 150 ]]; then
-		wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify_user
+		wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ 
+		#wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify_user
 	else
-		${notify_cmd} "The volume has reached its maximum value"
+		#${notify_cmd} "The volume has reached its maximum value"
+		notify-send "The volume has reached its maximum value" -u low
 	fi
 #	pactl set-sink-volume @DEFAULT_SINK@ +5% && notify_user
 }
 dec_volume() {
-       	wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify_user
+       	#wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && notify_user
+       	wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- 
 #	pactl set-sink-volume @DEFAULT_SINK@ -5% && notify_user
 }
 
 toggle_volume() {
 	if [[ "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}')" == "[MUTED]" ]]; then
-		wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 toggle && ${notify_cmd} "UNMUTE"
+		wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 toggle
+		#wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 toggle && ${notify_cmd} "UNMUTE"
 	else
-		wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 toggle && ${notify_cmd} "MUTED"
+		wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 toggle 
+		#wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 toggle && ${notify_cmd} "MUTED"
 	fi
 }
 
@@ -54,5 +60,7 @@ if [[ -x $(which wpctl) ]]; then
 		echo "$(get_volume)"
 	fi
 else
-	${notify_cmd} "'wpctl' not found !"
+	#${notify_cmd} "'wpctl' not found !"
+	notify-send "'wpctl' not found !" -u low
+	
 fi

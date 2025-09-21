@@ -1,0 +1,31 @@
+# /etc/fstab: static file system information.
+#
+# See the manpage fstab(5) for more information.
+#
+# NOTE: The root filesystem should have a pass number of either 0 or 1.
+#       All other filesystems should have a pass number of 0 or greater than 1.
+#
+# NOTE: Even though we list ext4 as the type here, it will work with ext2/ext3
+#       filesystems.  This just tells the kernel to use the ext4 driver.
+#
+# NOTE: You can use full paths to devices like /dev/sda3, but it is often
+#       more reliable to use filesystem labels or UUIDs. See your filesystem
+#       documentation for details on setting a label. To obtain the UUID, use
+#       the blkid(8) command.
+
+# <fs>			<mountpoint>	<type>		<opts>		<dump> <pass>
+
+#LABEL=boot		/boot		ext4		defaults	1 2
+#UUID=58e72203-57d1-4497-81ad-97655bd56494		/		xfs		defaults		0 1
+#LABEL=swap		none		swap		sw		0 0
+#/dev/cdrom		/mnt/cdrom	auto		noauto,ro	0 0
+
+# /dev/nvme0n1p3 LABEL=GenToo
+UUID=43d4faee-5398-472f-b962-740041365ea0	/         	btrfs     	rw,relatime,compress=zstd:15,ssd,discard=async,space_cache=v2,autodefrag,subvol=/@rootfs	0 0
+
+# /dev/nvme0n1p2 LABEL=HOME
+UUID=e8cbd1a9-3f6c-4815-a951-de92411a11c7	/home     	btrfs     	rw,relatime,compress=zstd:15,ssd,discard=async,space_cache=v2,autodefrag,subvol=/	0 0
+
+# /dev/nvme0n1p1
+UUID=860D-E6D0      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
